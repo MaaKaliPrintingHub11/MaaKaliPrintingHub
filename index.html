@@ -31,41 +31,84 @@
 
   <!-- Maa Kali Categories -->
   <section id="categories" class="py-16 px-6 md:px-20">
-    <h2 class="text-4xl font-bold text-center mb-12">Printing Products</h2>
+    <h2 class="text-4xl font-bold text-center mb-12">Our Products</h2>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="space-y-20">
 
-      <div class="bg-white/10 backdrop-blur-lg p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="text-2xl font-semibold mb-3">T-Shirts</h3>
-        <p>Custom printed stylish t-shirts with premium quality designs.</p>
+      <!-- Reusable Carousel Template -->
+      <script>
+        function initCarousel(id){
+          const container = document.getElementById(id);
+          const track = container.querySelector('.track');
+          let index = 0;
+          const items = track.children;
+
+          function showSlide(i){
+            index = (i + items.length) % items.length;
+            track.style.transform = `translateX(-${index * 100}%)`;
+          }
+
+          container.querySelector('.next').onclick = ()=> showSlide(index+1);
+          container.querySelector('.prev').onclick = ()=> showSlide(index-1);
+
+          setInterval(()=> showSlide(index+1),3000);
+        }
+      </script>
+
+      <!-- Carousel Component -->
+      <div>
+        <h3 class="text-2xl font-semibold mb-4">T-Shirts</h3>
+        <div id="carousel1" class="relative overflow-hidden rounded-xl">
+          <div class="track flex transition-transform duration-700">
+            <img src="t1.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="t2.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="t3.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="t4.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="t5.jpg" class="w-full shrink-0 h-80 object-cover">
+          </div>
+          <button class="prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❮</button>
+          <button class="next absolute right-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❯</button>
+        </div>
       </div>
 
-      <div class="bg-white/10 backdrop-blur-lg p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="text-2xl font-semibold mb-3">Cushion Covers</h3>
-        <p>Personalized cushions perfect for gifting and home decor.</p>
+      <div>
+        <h3 class="text-2xl font-semibold mb-4">Cushion Covers</h3>
+        <div id="carousel2" class="relative overflow-hidden rounded-xl">
+          <div class="track flex transition-transform duration-700">
+            <img src="c1.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="c2.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="c3.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="c4.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="c5.jpg" class="w-full shrink-0 h-80 object-cover">
+          </div>
+          <button class="prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❮</button>
+          <button class="next absolute right-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❯</button>
+        </div>
       </div>
 
-      <div class="bg-white/10 backdrop-blur-lg p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="text-2xl font-semibold mb-3">Mugs & Bottles</h3>
-        <p>Creative and durable printed mugs and bottles.</p>
-      </div>
-
-      <div class="bg-white/10 backdrop-blur-lg p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="text-2xl font-semibold mb-3">Posters & Stickers</h3>
-        <p>Car posters & high-quality sticker printing in all sizes.</p>
-      </div>
-
-      <div class="bg-white/10 backdrop-blur-lg p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="text-2xl font-semibold mb-3">Gift Items</h3>
-        <p>Heart pillows, bangles & more customized gift products.</p>
-      </div>
-
-      <div class="bg-white/10 backdrop-blur-lg p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="text-2xl font-semibold mb-3">XTRA</h3>
-        <p>More creative customized printing solutions available.</p>
+      <div>
+        <h3 class="text-2xl font-semibold mb-4">Mugs & Bottles</h3>
+        <div id="carousel3" class="relative overflow-hidden rounded-xl">
+          <div class="track flex transition-transform duration-700">
+            <img src="m1.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="m2.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="m3.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="m4.jpg" class="w-full shrink-0 h-80 object-cover">
+            <img src="m5.jpg" class="w-full shrink-0 h-80 object-cover">
+          </div>
+          <button class="prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❮</button>
+          <button class="next absolute right-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❯</button>
+        </div>
       </div>
 
     </div>
+
+    <script>
+      initCarousel('carousel1');
+      initCarousel('carousel2');
+      initCarousel('carousel3');
+    </script>
+
   </section>
 
   <!-- Shree Card Center Section -->
