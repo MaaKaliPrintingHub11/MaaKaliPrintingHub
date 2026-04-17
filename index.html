@@ -36,69 +36,64 @@
     <div class="space-y-20">
 
       <!-- Reusable Carousel Template -->
-      <script>
-        function initCarousel(id){
-          const container = document.getElementById(id);
-          const track = container.querySelector('.track');
-          let index = 0;
-          const items = track.children;
-
-          function showSlide(i){
-            index = (i + items.length) % items.length;
-            track.style.transform = `translateX(-${index * 100}%)`;
-          }
-
-          container.querySelector('.next').onclick = ()=> showSlide(index+1);
-          container.querySelector('.prev').onclick = ()=> showSlide(index-1);
-
-          setInterval(()=> showSlide(index+1),3000);
-        }
-      </script>
+      <style>
+.carousel-btn{backdrop-filter:blur(12px);background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25)}
+.carousel-btn:hover{background:rgba(255,255,255,.3);transform:scale(1.08)}
+.slide-shadow{box-shadow:0 25px 60px rgba(0,0,0,.35)}
+.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);display:inline-block;margin:0 5px;cursor:pointer}
+.dot.active{background:#fff;transform:scale(1.25)}
+</style>
+<script>
+function initCarousel(id){const container=document.getElementById(id);const track=container.querySelector('.track');const items=track.children;const dotsWrap=container.querySelector('.dots');let index=0;let auto;for(let i=0;i<items.length;i++){let d=document.createElement('span');d.className='dot';d.onclick=()=>showSlide(i);dotsWrap.appendChild(d);}const dots=dotsWrap.children;function showSlide(i){index=(i+items.length)%items.length;track.style.transform='translateX(-'+(index*100)+'%)';[...dots].forEach(x=>x.classList.remove('active'));dots[index].classList.add('active');}function start(){auto=setInterval(()=>showSlide(index+1),3500)}function stop(){clearInterval(auto)}container.querySelector('.next').onclick=()=>showSlide(index+1);container.querySelector('.prev').onclick=()=>showSlide(index-1);container.onmouseenter=stop;container.onmouseleave=start;showSlide(0);start();}
+</script>
 
       <!-- Carousel Component -->
       <div>
         <h3 class="text-2xl font-semibold mb-4">T-Shirts</h3>
-        <div id="carousel1" class="relative overflow-hidden rounded-xl">
-          <div class="track flex transition-transform duration-700">
-            <img src="t1.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="t2.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="t3.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="t4.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="t5.jpg" class="w-full shrink-0 h-80 object-cover">
+        <div id="carousel1" class="relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-xl p-2 slide-shadow">
+          <div class="track flex transition-transform duration-700 ease-in-out">
+            <img src="t1.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="t2.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="t3.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="t4.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="t5.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
           </div>
-          <button class="prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❮</button>
-          <button class="next absolute right-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❯</button>
+          <button class="prev carousel-btn absolute left-4 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-xl transition">❮</button>
+          <button class="next carousel-btn absolute right-4 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-xl transition">❯</button>
         </div>
+          <div class="dots text-center py-4"></div>
       </div>
 
       <div>
         <h3 class="text-2xl font-semibold mb-4">Cushion Covers</h3>
-        <div id="carousel2" class="relative overflow-hidden rounded-xl">
-          <div class="track flex transition-transform duration-700">
-            <img src="c1.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="c2.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="c3.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="c4.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="c5.jpg" class="w-full shrink-0 h-80 object-cover">
+        <div id="carousel2" class="relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-xl p-2 slide-shadow">
+          <div class="track flex transition-transform duration-700 ease-in-out">
+            <img src="c1.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="c2.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="c3.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="c4.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="c5.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
           </div>
-          <button class="prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❮</button>
-          <button class="next absolute right-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❯</button>
+          <button class="prev carousel-btn absolute left-4 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-xl transition">❮</button>
+          <button class="next carousel-btn absolute right-4 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-xl transition">❯</button>
         </div>
+          <div class="dots text-center py-4"></div>
       </div>
 
       <div>
         <h3 class="text-2xl font-semibold mb-4">Mugs & Bottles</h3>
-        <div id="carousel3" class="relative overflow-hidden rounded-xl">
-          <div class="track flex transition-transform duration-700">
-            <img src="m1.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="m2.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="m3.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="m4.jpg" class="w-full shrink-0 h-80 object-cover">
-            <img src="m5.jpg" class="w-full shrink-0 h-80 object-cover">
+        <div id="carousel3" class="relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-xl p-2 slide-shadow">
+          <div class="track flex transition-transform duration-700 ease-in-out">
+            <img src="m1.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="m2.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="m3.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="m4.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
+            <img src="m5.jpg" class="w-full shrink-0 h-[28rem] object-cover rounded-2xl">
           </div>
-          <button class="prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❮</button>
-          <button class="next absolute right-2 top-1/2 -translate-y-1/2 bg-white/30 px-3 py-2 rounded-full">❯</button>
+          <button class="prev carousel-btn absolute left-4 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-xl transition">❮</button>
+          <button class="next carousel-btn absolute right-4 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-xl transition">❯</button>
         </div>
+          <div class="dots text-center py-4"></div>
       </div>
 
     </div>
