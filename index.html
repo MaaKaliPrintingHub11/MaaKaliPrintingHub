@@ -224,30 +224,78 @@
         </div>
       </div>
 
-      <!-- Digital Print Media Carousel -->
-     <div>
-        <h3 class="text-2xl font-semibold mb-4">Digital Print Media & Cards</h3>
-        <div class="auto-slider">
-          <div class="auto-track two-line">
-            <img src="p1.jpg" class="prod-img" onerror="this.onerror=null;this.src='p1.jpeg';this.onerror=function(){this.src='p1.png'}">
-            <img src="p2.jpg" class="prod-img" onerror="this.onerror=null;this.src='p2.jpeg';this.onerror=function(){this.src='p2.png'}">
-            <img src="p3.jpg" class="prod-img" onerror="this.onerror=null;this.src='p3.jpeg';this.onerror=function(){this.src='p3.png'}">
-            <img src="p4.jpg" class="prod-img" onerror="this.onerror=null;this.src='p4.jpeg';this.onerror=function(){this.src='p4.png'}">
-            <img src="p5.jpg" class="prod-img" onerror="this.onerror=null;this.src='p5.jpeg';this.onerror=function(){this.src='p5.png'}">
-            <img src="p6.jpg" class="prod-img" onerror="this.onerror=null;this.src='p6.jpeg';this.onerror=function(){this.src='p6.png'}">
-            <img src="p7.jpg" class="prod-img" onerror="this.onerror=null;this.src='p7.jpeg';this.onerror=function(){this.src='p7.png'}">
-            <img src="p8.jpg" class="prod-img" onerror="this.onerror=null;this.src='p8.jpeg';this.onerror=function(){this.src='p8.png'}">
-            <img src="p9.jpg" class="prod-img" onerror="this.onerror=null;this.src='p9.jpeg';this.onerror=function(){this.src='p9.png'}">
-            <img src="p10.jpg" class="prod-img" onerror="this.onerror=null;this.src='p10.jpeg';this.onerror=function(){this.src='p10.png'}">
-            <img src="p11.jpg" class="prod-img" onerror="this.onerror=null;this.src='p11.jpeg';this.onerror=function(){this.src='p11.png'}">
-            <img src="p12.jpg" class="prod-img" onerror="this.onerror=null;this.src='p12.jpeg';this.onerror=function(){this.src='p12.png'}">
-            <img src="p13.jpg" class="prod-img" onerror="this.onerror=null;this.src='p13.jpeg';this.onerror=function(){this.src='p13.png'}">
-            <img src="p14.jpg" class="prod-img" onerror="this.onerror=null;this.src='p14.jpeg';this.onerror=function(){this.src='p14.png'}">
-            <img src="p15.jpg" class="prod-img" onerror="this.onerror=null;this.src='p15.jpeg';this.onerror=function(){this.src='p15.png'}">
-            <img src="p16.jpg" class="prod-img" onerror="this.onerror=null;this.src='p16.jpeg';this.onerror=function(){this.src='p16.png'}">
-            <img src="p17.jpg" class="prod-img" onerror="this.onerror=null;this.src='p17.jpeg';this.onerror=function(){this.src='p17.png'}">          
-          </div>
-        </div>
+     <!-- Digital Print Media Carousel -->
+<div>
+  <h3 class="text-2xl font-semibold mb-6">Digital Print Media & Cards</h3>
+
+  <style>
+    .single-slider{
+      overflow:hidden;
+      width:100%;
+      max-width:950px;
+      margin:auto;
+      border-radius:24px;
+      box-shadow:0 20px 40px rgba(0,0,0,.35);
+    }
+
+    .single-track{
+      display:flex;
+      width:max-content;
+      animation:slideOne 40s infinite linear;
+    }
+
+    .single-slider:hover .single-track{
+      animation-play-state:paused;
+    }
+
+    .land-img{
+      width:950px;
+      height:520px;
+      object-fit:cover;
+      flex-shrink:0;
+      border-radius:24px;
+    }
+
+    @keyframes slideOne{
+      0%,5%{transform:translateX(0)}
+      10%,15%{transform:translateX(-950px)}
+      20%,25%{transform:translateX(-1900px)}
+      30%,35%{transform:translateX(-2850px)}
+      40%,45%{transform:translateX(-3800px)}
+      50%,55%{transform:translateX(-4750px)}
+      60%,65%{transform:translateX(-5700px)}
+      70%,75%{transform:translateX(-6650px)}
+      80%,85%{transform:translateX(-7600px)}
+      90%,95%{transform:translateX(-8550px)}
+      100%{transform:translateX(0)}
+    }
+
+    @media(max-width:768px){
+      .land-img{
+        width:100vw;
+        height:260px;
+        border-radius:16px;
+      }
+    }
+  </style>
+
+  <div class="single-slider">
+    <div class="single-track">
+
+      <img src="p1.jpg" class="land-img" onerror="this.src='p1.jpeg';this.onerror=function(){this.src='p1.png'}">
+      <img src="p2.jpg" class="land-img" onerror="this.src='p2.jpeg';this.onerror=function(){this.src='p2.png'}">
+      <img src="p3.jpg" class="land-img" onerror="this.src='p3.jpeg';this.onerror=function(){this.src='p3.png'}">
+      <img src="p4.jpg" class="land-img" onerror="this.src='p4.jpeg';this.onerror=function(){this.src='p4.png'}">
+      <img src="p5.jpg" class="land-img" onerror="this.src='p5.jpeg';this.onerror=function(){this.src='p5.png'}">
+      <img src="p6.jpg" class="land-img" onerror="this.src='p6.jpeg';this.onerror=function(){this.src='p6.png'}">
+      <img src="p7.jpg" class="land-img" onerror="this.src='p7.jpeg';this.onerror=function(){this.src='p7.png'}">
+      <img src="p8.jpg" class="land-img" onerror="this.src='p8.jpeg';this.onerror=function(){this.src='p8.png'}">
+      <img src="p9.jpg" class="land-img" onerror="this.src='p9.jpeg';this.onerror=function(){this.src='p9.png'}">
+      <img src="p10.jpg" class="land-img" onerror="this.src='p10.jpeg';this.onerror=function(){this.src='p10.png'}">
+
+    </div>
+  </div>
+</div>
 
       <!-- Gift Items Carousel -->
       <div>
