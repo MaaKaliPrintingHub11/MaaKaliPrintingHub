@@ -530,20 +530,18 @@ border-radius:20px;
     </div>
   </section>
 
-
-```html id="k2xv9p"
 <!-- PREMIUM CUSTOMER REVIEW SECTION -->
 <section class="py-20 px-6 md:px-20 bg-white/10 backdrop-blur-xl rounded-3xl my-16 mx-4">
 
-<h2 class="text-5xl font-black text-center mb-4 text-white">
-⭐ Customer Reviews
-</h2>
+    <h2 class="text-5xl font-black text-center mb-4 text-white">
+    ⭐ Customer Reviews
+    </h2>
 
-<p class="text-center text-purple-100 mb-12 text-lg">
-Hamare customers apna review aur rating de sakte hain
-</p>
+   <p class="text-center text-purple-100 mb-12 text-lg">
+   Hamare customers apna review aur rating de sakte hain
+   </p>
 
-<div class="grid md:grid-cols-2 gap-10">
+   <div class="grid md:grid-cols-2 gap-10">
 
 <!-- LEFT SIDE FORM -->
 <div class="bg-black/30 p-8 rounded-3xl shadow-2xl">
@@ -578,12 +576,15 @@ Submit Review
 </div>
 
 
-<!-- RIGHT SIDE REVIEWS -->
+
+        <!-- RIGHT SIDE REVIEWS -->
 <div>
 
 <h3 class="text-2xl font-bold mb-6">Recent Reviews</h3>
 
-<div id="reviewsContainer" class="space-y-5">
+<!-- Scrollable Box -->
+<div id="reviewsContainer"
+class="space-y-5 max-h-[600px] overflow-y-auto pr-2 custom-scroll">
 
 <!-- Default Reviews -->
 <div class="bg-white/10 p-5 rounded-2xl">
@@ -601,6 +602,28 @@ Submit Review
 </div>
 
 </div>
+
+
+<!-- STYLE -->
+<style>
+.custom-scroll::-webkit-scrollbar{
+width:8px;
+}
+
+.custom-scroll::-webkit-scrollbar-track{
+background:rgba(255,255,255,0.08);
+border-radius:20px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb{
+background:#ec4899;
+border-radius:20px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover{
+background:#db2777;
+}
+</style>
 
 </div>
 </section>
@@ -631,11 +654,6 @@ container.prepend(review);
 form.reset();
 });
 </script>
-```
-
-
-
- 
 
 
  
