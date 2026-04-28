@@ -18,7 +18,48 @@
 <link rel="preload" href="logo1.jpeg" as="image">
 <link rel="preload" href="logo2.jpeg" as="image">
 <link rel="preload" href="bg1.webp" as="image">
+<style>
+.review-photo{
+width:160px;
+height:120px;
+object-fit:cover;
+border-radius:14px;
+margin-top:15px;
+cursor:pointer;
+transition:0.3s;
+border:2px solid rgba(255,255,255,0.2);
+}
 
+.review-photo:hover{
+transform:scale(1.05);
+}
+
+/* Fullscreen Popup */
+#imgPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.88);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+padding:20px;
+cursor:pointer;
+}
+
+#imgPopup img{
+max-width:95%;
+max-height:95%;
+border-radius:20px;
+box-shadow:0 0 30px rgba(255,255,255,0.2);
+animation:zoomIn .3s ease;
+}
+
+@keyframes zoomIn{
+from{transform:scale(.7);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+</style>
 <style>
 html{
   scroll-behavior:smooth;
@@ -589,14 +630,15 @@ Submit Review
 <div id="reviewsContainer"
 class="space-y-5 max-h-[600px] overflow-y-auto pr-2 custom-scroll">
 
-<!-- Default Review -->
-<div class="bg-white/10 p-5 rounded-2xl">
-<h4 class="font-bold text-xl">Rahul Sharma</h4>
-<p class="text-yellow-300">⭐⭐⭐⭐⭐</p>
-<p class="text-purple-100 mt-2">Bahut badhiya mug printing quality.</p>
-<img src="sample1.jpg" class="mt-4 rounded-xl w-full h-48 object-cover">
-</div>
 
+<!-- Example Review -->
+<div class="bg-white/10 p-5 rounded-2xl">
+<h4 class="font-bold text-xl">Awesome</h4>
+
+<img src="your-image.jpg"
+class="review-photo"
+onclick="openImage(this.src)">
+</div>
 </div>
 
 </div>
@@ -678,6 +720,21 @@ reader.onload({target:{result:""}});
   <footer class="py-6 text-center bg-black/30">
     <p>&copy; 2026 Maa Kali Printing Hub | Shree Card Center</p>
   </footer>
+<!-- Fullscreen Popup -->
+<div id="imgPopup" onclick="closeImage()">
+<img id="popupImg">
+</div>
 
+
+<script>
+function openImage(src){
+document.getElementById("popupImg").src = src;
+document.getElementById("imgPopup").style.display = "flex";
+}
+
+function closeImage(){
+document.getElementById("imgPopup").style.display = "none";
+}
+</script>
 </body>
 </html>
