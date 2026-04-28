@@ -20,59 +20,38 @@
 <link rel="preload" href="bg1.webp" as="image">
 <!-- REVIEW IMAGE RESPONSIVE + CLICK TO FULL VIEW -->
 
-<style>
-/* Review uploaded image small */
-.review-img{
-width:100%;
-max-width:220px;
-height:140px;
-object-fit:cover;
-border-radius:14px;
-margin-top:14px;
-cursor:pointer;
-transition:0.3s;
-box-shadow:0 10px 25px rgba(0,0,0,.25);
+<script>
+
+const popup = document.getElementById("imgPopup");
+const popupImg = document.getElementById("popupImg");
+
+function openPopup(src){
+popup.style.display = "flex";
+popupImg.src = src;
+document.body.style.overflow = "hidden";
 }
 
-.review-img:hover{
-transform:scale(1.03);
+function closePopup(){
+popup.style.display = "none";
+popupImg.src = "";
+document.body.style.overflow = "auto";
 }
 
-/* Mobile */
-@media(max-width:768px){
-.review-img{
-max-width:100%;
-height:180px;
+/* Background click close */
+popup.addEventListener("click", function(e){
+if(e.target === popup){
+closePopup();
 }
-}
+});
 
-/* Fullscreen Popup */
-#imgPopup{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.85);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:9999;
-padding:20px;
-cursor:pointer;
-}
+/* Image click close */
+popupImg.addEventListener("click", closePopup);
 
-#imgPopup img{
-max-width:95%;
-max-height:95%;
-border-radius:18px;
-box-shadow:0 20px 50px rgba(0,0,0,.45);
-animation:zoomIn .25s ease;
-}
+</script>
 
-@keyframes zoomIn{
-from{transform:scale(.7);opacity:0}
-to{transform:scale(1);opacity:1}
-}
-</style>
 
+
+ 
  
 <style>
 html{
@@ -734,37 +713,45 @@ reader.onload({target:{result:""}});
   <footer class="py-6 text-center bg-black/30">
     <p>&copy; 2026 Maa Kali Printing Hub | Shree Card Center</p>
   </footer>
-<!-- Fullscreen Popup -->
-<div id="imgPopup" onclick="closeImage()">
-<img id="popupImg">
-</div>
+ 
+<!-- IMAGE POPUP -->
+<div id="imgPopup">
 
-<!-- FULL IMAGE POPUP -->
-<div id="imgPopup" onclick="closePopup()">
+<button id="closeBtn" onclick="closePopup()">✕</button>
+
 <img id="popupImg">
+
 </div>
  
 
 <script>
-/* Review create code me image class ye use karo */
-const reviewHTML = `
-<img src="UPLOAD_IMAGE_URL" class="review-img" onclick="openPopup(this.src)">
-`;
 
-/* Popup open */
+const popup = document.getElementById("imgPopup");
+const popupImg = document.getElementById("popupImg");
+
 function openPopup(src){
-document.getElementById("imgPopup").style.display="flex";
-document.getElementById("popupImg").src=src;
-document.body.style.overflow="hidden";
+popup.style.display = "flex";
+popupImg.src = src;
+document.body.style.overflow = "hidden";
 }
 
-/* Popup close */
 function closePopup(){
-document.getElementById("imgPopup").style.display="none";
-document.getElementById("popupImg").src="";
-document.body.style.overflow="auto";
+popup.style.display = "none";
+popupImg.src = "";
+document.body.style.overflow = "auto";
 }
-</script>
+
+/* Background click close */
+popup.addEventListener("click", function(e){
+if(e.target === popup){
+closePopup();
+}
+});
+
+/* Image click close */
+popupImg.addEventListener("click", closePopup);
+
+</script> 
  
 </body>
 </html>
