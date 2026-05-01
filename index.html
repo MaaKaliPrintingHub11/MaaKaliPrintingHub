@@ -12,44 +12,72 @@
 
 <link rel="icon" href="logo1.jpeg">
  
-<script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Faster Resource Loading -->
-<link rel="preload" href="logo1.jpeg" as="image">
-<link rel="preload" href="logo2.jpeg" as="image">
-<link rel="preload" href="bg1.webp" as="image">
-<!-- REVIEW IMAGE RESPONSIVE + CLICK TO FULL VIEW -->
 
-<script>
+<style>
 
-const popup = document.getElementById("imgPopup");
-const popupImg = document.getElementById("popupImg");
-
-function openPopup(src){
-popup.style.display = "flex";
-popupImg.src = src;
-document.body.style.overflow = "hidden";
+/* Small Review Image */
+.review-img{
+  width:100%;
+  max-width:220px;
+  height:140px;
+  object-fit:cover;
+  border-radius:14px;
+  margin-top:14px;
+  cursor:pointer;
 }
 
-function closePopup(){
-popup.style.display = "none";
-popupImg.src = "";
-document.body.style.overflow = "auto";
+/* Popup Background */
+#imgPopup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
 }
 
-/* Background click close */
-popup.addEventListener("click", function(e){
-if(e.target === popup){
-closePopup();
+/* Popup Image */
+#imgPopup img{
+  max-width:90%;
+  max-height:85%;
+  border-radius:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
-});
+ #imgPopup img{
+  transition: transform .3s ease;
+}
 
-/* Image click close */
-popupImg.addEventListener("click", closePopup);
+#imgPopup img:hover{
+  transform: scale(1.02);
+}
 
-</script>
+/* Close Button */
+#closeBtn{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:30px;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+  transition:.3s;
+}
 
+#closeBtn:hover{
+  color:#ff4d6d;
+}
 
+/* Mobile */
+@media(max-width:768px){
+  #imgPopup img{
+    max-width:95%;
+    max-height:80%;
+  }
+}
+
+</style>
 
  
  
@@ -629,7 +657,7 @@ class="space-y-5 max-h-[600px] overflow-y-auto pr-2 custom-scroll">
 <h4 class="font-bold text-xl">Awesome</h4>
 
 <img src="your-image.jpg"
-class="review-photo"
+class="review-img"
 onclick="openImage(this.src)">
 </div>
 </div>
@@ -717,41 +745,49 @@ reader.onload({target:{result:""}});
 <!-- IMAGE POPUP -->
 <div id="imgPopup">
 
-<button id="closeBtn" onclick="closePopup()">✕</button>
+  <!-- Close Button -->
+  <span id="closeBtn" onclick="closePopup()">✖</span>
 
-<img id="popupImg">
+  <!-- Image -->
+  <img id="popupImg">
 
 </div>
- <!-- Function Errors updations karne k liye  -->
-
+ 
 <script>
 
-const popup = document.getElementById("imgPopup");
-const popupImg = document.getElementById("popupImg");
-
 function openPopup(src){
-popup.style.display = "flex";
-popupImg.src = src;
-document.body.style.overflow = "hidden";
+  const popup = document.getElementById("imgPopup");
+  const popupImg = document.getElementById("popupImg");
+
+  popup.style.display = "flex";
+  popupImg.src = src;
+  document.body.style.overflow = "hidden";
 }
 
 function closePopup(){
-popup.style.display = "none";
-popupImg.src = "";
-document.body.style.overflow = "auto";
+  const popup = document.getElementById("imgPopup");
+  const popupImg = document.getElementById("popupImg");
+
+  popup.style.display = "none";
+  popupImg.src = "";
+  document.body.style.overflow = "auto";
 }
 
-/* Background click close */
-popup.addEventListener("click", function(e){
-if(e.target === popup){
-closePopup();
-}
+/* Background click se close */
+document.getElementById("imgPopup").addEventListener("click", function(e){
+  if(e.target.id === "imgPopup"){
+    closePopup();
+  }
 });
 
-/* Image click close */
-popupImg.addEventListener("click", closePopup);
+/* ESC key se bhi close */
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape"){
+    closePopup();
+  }
+});
 
-</script> 
+</script>
  
 </body>
 </html>
