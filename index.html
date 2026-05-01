@@ -81,6 +81,15 @@ popupImg.addEventListener("click", closePopup);
   box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
 
+#imgPopup img{
+  transition: transform .3s ease;
+}
+
+#imgPopup img:hover{
+  transform: scale(1.02);
+}
+ 
+ 
 /* Close Button */
 #closeBtn{
   position:absolute;
@@ -685,7 +694,7 @@ class="space-y-5 max-h-[600px] overflow-y-auto pr-2 custom-scroll">
 <h4 class="font-bold text-xl">Awesome</h4>
 
 <img src="your-image.jpg"
-class="review-photo"
+class="review-img"
 onclick="openImage(this.src)">
 </div>
 </div>
@@ -784,20 +793,33 @@ reader.onload({target:{result:""}});
 <script>
 
 function openPopup(src){
-  document.getElementById("imgPopup").style.display = "flex";
-  document.getElementById("popupImg").src = src;
+  const popup = document.getElementById("imgPopup");
+  const popupImg = document.getElementById("popupImg");
+
+  popup.style.display = "flex";
+  popupImg.src = src;
   document.body.style.overflow = "hidden";
 }
 
 function closePopup(){
-  document.getElementById("imgPopup").style.display = "none";
-  document.getElementById("popupImg").src = "";
+  const popup = document.getElementById("imgPopup");
+  const popupImg = document.getElementById("popupImg");
+
+  popup.style.display = "none";
+  popupImg.src = "";
   document.body.style.overflow = "auto";
 }
 
-/* Background click se bhi close */
+/* Background click se close */
 document.getElementById("imgPopup").addEventListener("click", function(e){
   if(e.target.id === "imgPopup"){
+    closePopup();
+  }
+});
+
+/* ESC key se bhi close */
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape"){
     closePopup();
   }
 });
