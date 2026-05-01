@@ -12,7 +12,42 @@
 
 <link rel="icon" href="logo1.jpeg">
  
+<script src="https://cdn.tailwindcss.com"></script>
 
+<!-- Faster Resource Loading -->
+<link rel="preload" href="logo1.jpeg" as="image">
+<link rel="preload" href="logo2.jpeg" as="image">
+<link rel="preload" href="bg1.webp" as="image">
+<!-- REVIEW IMAGE RESPONSIVE + CLICK TO FULL VIEW -->
+
+<script>
+
+const popup = document.getElementById("imgPopup");
+const popupImg = document.getElementById("popupImg");
+
+function openPopup(src){
+popup.style.display = "flex";
+popupImg.src = src;
+document.body.style.overflow = "hidden";
+}
+
+function closePopup(){
+popup.style.display = "none";
+popupImg.src = "";
+document.body.style.overflow = "auto";
+}
+
+/* Background click close */
+popup.addEventListener("click", function(e){
+if(e.target === popup){
+closePopup();
+}
+});
+
+/* Image click close */
+popupImg.addEventListener("click", closePopup);
+
+</script>
 
 <style>
 
@@ -44,13 +79,6 @@
   max-height:85%;
   border-radius:18px;
   box-shadow:0 20px 60px rgba(0,0,0,.5);
-}
- #imgPopup img{
-  transition: transform .3s ease;
-}
-
-#imgPopup img:hover{
-  transform: scale(1.02);
 }
 
 /* Close Button */
@@ -657,7 +685,7 @@ class="space-y-5 max-h-[600px] overflow-y-auto pr-2 custom-scroll">
 <h4 class="font-bold text-xl">Awesome</h4>
 
 <img src="your-image.jpg"
-class="review-img"
+class="review-photo"
 onclick="openImage(this.src)">
 </div>
 </div>
@@ -756,33 +784,20 @@ reader.onload({target:{result:""}});
 <script>
 
 function openPopup(src){
-  const popup = document.getElementById("imgPopup");
-  const popupImg = document.getElementById("popupImg");
-
-  popup.style.display = "flex";
-  popupImg.src = src;
+  document.getElementById("imgPopup").style.display = "flex";
+  document.getElementById("popupImg").src = src;
   document.body.style.overflow = "hidden";
 }
 
 function closePopup(){
-  const popup = document.getElementById("imgPopup");
-  const popupImg = document.getElementById("popupImg");
-
-  popup.style.display = "none";
-  popupImg.src = "";
+  document.getElementById("imgPopup").style.display = "none";
+  document.getElementById("popupImg").src = "";
   document.body.style.overflow = "auto";
 }
 
-/* Background click se close */
+/* Background click se bhi close */
 document.getElementById("imgPopup").addEventListener("click", function(e){
   if(e.target.id === "imgPopup"){
-    closePopup();
-  }
-});
-
-/* ESC key se bhi close */
-document.addEventListener("keydown", function(e){
-  if(e.key === "Escape"){
     closePopup();
   }
 });
@@ -791,3 +806,5 @@ document.addEventListener("keydown", function(e){
  
 </body>
 </html>
+
+isko jaha sahi karna hai copy paste kr do sahi kar ke do
