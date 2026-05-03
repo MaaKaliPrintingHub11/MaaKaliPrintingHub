@@ -772,10 +772,7 @@ loadReviews(); // naya review load ho jayega
 </div>
 
 
-
- 
-
-<script>
+ <script>
 
 async function loadReviews(){
 
@@ -797,23 +794,34 @@ div.innerHTML = `
 <p class="mt-2">${r.Message}</p>
 `;
 
-/* ✅ IMAGE FIX */
 if(r.ImageURL){
 
   let imgURL = r.ImageURL;
 
-  // 🔥 Google Drive link ko correct preview format me convert karo
-  if(imgURL.includes("drive.google.com")){
-    const idMatch = imgURL.match(/id=([^&]+)/);
-    if(idMatch){
-      imgURL = `https://drive.google.com/uc?export=view&id=${idMatch[1]}`;
-    }
+  // 🔥 FIX 1: id extract karo
+  let fileId = "";
+
+  if(imgURL.includes("id=")){
+    fileId = imgURL.split("id=")[1].split("&")[0];
+  } 
+  else if(imgURL.includes("/d/")){
+    fileId = imgURL.split("/d/")[1].split("/")[0];
+  }
+
+  // 🔥 FIX 2: correct preview link
+  if(fileId){
+    imgURL = `https://lh3.googleusercontent.com/d/${fileId}`;
   }
 
   const img = document.createElement("img");
   img.src = imgURL;
   img.className = "review-img";
   img.loading = "lazy";
+
+  // ❗ fallback (agar fir bhi fail ho)
+  img.onerror = function(){
+    this.src = "https://via.placeholder.com/300x200?text=Image+Not+Available";
+  };
 
   img.onclick = () => openPopup(imgURL);
 
@@ -828,7 +836,10 @@ container.appendChild(div);
 
 loadReviews();
 
-</script> 
+</script>
+ 
+
+
 <script>
 
 function openPopup(src){
