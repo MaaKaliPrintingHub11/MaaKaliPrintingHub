@@ -813,13 +813,16 @@ async function loadReviews(){
       div.appendChild(msgEl);
 
       // ✅ Image (if exists)
-      if(r.ImageURL){
-        const img = document.createElement("img");
-        img.src = r.ImageURL;
-        img.className = "review-img";
-        img.onclick = () => openPopup(r.ImageURL);
-        div.appendChild(img);
-      }
+      if(r.ImageURL && r.ImageURL.startsWith("data:image")){
+  const img = document.createElement("img");
+
+  img.src = r.ImageURL;   // base64 images (jpg/png/webp sab support)
+  img.className = "review-img";
+
+  img.onclick = () => openPopup(r.ImageURL);
+
+  div.appendChild(img);
+}
 
       container.appendChild(div);
 
