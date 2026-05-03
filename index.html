@@ -1,68 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <!-- HEAD OPTIMIZATION -->
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Maa Kali Printing Hub & Shree Card Center</title>
 <meta name="theme-color" content="#6d28d9">
-<meta name="description" content="Premium Sublimation Printing, Gift Items, Wedding Cards, Visiting Cards, Invitation Cards.">
+<meta name="description" content="Premium Sublimation Printing, Wedding Cards, Gifts & Visiting Cards.">
 
 <link rel="icon" href="logo1.jpeg">
- 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Faster Resource Loading -->
-<link rel="preload" href="logo1.jpeg" as="image">
-<link rel="preload" href="logo2.jpeg" as="image">
-<link rel="preload" href="bg1.webp" as="image">
-<!-- REVIEW IMAGE RESPONSIVE + CLICK TO FULL VIEW -->
-
-<script>
-
-const popup = document.getElementById("imgPopup");
-const popupImg = document.getElementById("popupImg");
-
-function openPopup(src){
-popup.style.display = "flex";
-popupImg.src = src;
-document.body.style.overflow = "hidden";
-}
-
-function closePopup(){
-popup.style.display = "none";
-popupImg.src = "";
-document.body.style.overflow = "auto";
-}
-
-/* Background click close */
-popup.addEventListener("click", function(e){
-if(e.target === popup){
-closePopup();
-}
-});
-
-/* Image click close */
-popupImg.addEventListener("click", closePopup);
-
-</script>
-
 <style>
-
-/* Small Review Image */
-.review-img{
-  width:100%;
-  max-width:220px;
-  height:140px;
-  object-fit:cover;
-  border-radius:14px;
-  margin-top:14px;
-  cursor:pointer;
+body{
+  margin:0;
+  font-family:sans-serif;
+  background:black;
+  color:white;
+  overflow-x:hidden;
 }
 
-/* Popup Background */
+/* Background */
+.bg-slide{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  animation:fade 24s infinite;
+}
+.bg-slide:nth-child(1){animation-delay:0s;}
+.bg-slide:nth-child(2){animation-delay:8s;}
+.bg-slide:nth-child(3){animation-delay:16s;}
+
+@keyframes fade{
+  0%,100%{opacity:0;}
+  10%,30%{opacity:.6;}
+}
+
+/* Product Image */
+.prod-img{
+  width:220px;
+  height:220px;
+  object-fit:cover;
+  border-radius:16px;
+  transition:.3s;
+}
+.prod-img:hover{
+  transform:scale(1.05);
+}
+
+/* Slider */
+.auto-slider{
+  overflow:hidden;
+}
+.auto-track{
+  display:flex;
+  gap:16px;
+  animation:scroll 40s linear infinite;
+}
+.auto-slider:hover .auto-track{
+  animation-play-state:paused;
+}
+@keyframes scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+/* Popup */
 #imgPopup{
   position:fixed;
   inset:0;
@@ -72,803 +79,143 @@ popupImg.addEventListener("click", closePopup);
   align-items:center;
   z-index:9999;
 }
-
-/* Popup Image */
 #imgPopup img{
   max-width:90%;
-  max-height:85%;
-  border-radius:18px;
-  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  max-height:80%;
+  border-radius:12px;
 }
-
-#imgPopup img{
-  transition: transform .3s ease;
-}
-
-#imgPopup img:hover{
-  transform: scale(1.02);
-}
- 
- 
-/* Close Button */
 #closeBtn{
   position:absolute;
   top:20px;
   right:30px;
   font-size:30px;
-  color:white;
   cursor:pointer;
-  font-weight:bold;
-  transition:.3s;
 }
-
-#closeBtn:hover{
-  color:#ff4d6d;
-}
-
-/* Mobile */
-@media(max-width:768px){
-  #imgPopup img{
-    max-width:95%;
-    max-height:80%;
-  }
-}
-
 </style>
 
- 
- 
-<style>
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  padding:0;
-  font-family:sans-serif;
-  overflow-x:hidden;
-}
-
-/* Background Slider */
-.bg-slide{
-  opacity:0;
-  animation:bgFade 24s infinite;
-  will-change:opacity;
-}
-
-.bg-slide:nth-child(1){animation-delay:0s;}
-.bg-slide:nth-child(2){animation-delay:8s;}
-.bg-slide:nth-child(3){animation-delay:16s;}
-
-@keyframes bgFade{
-  0%{opacity:0;}
-  8%{opacity:.65;}
-  28%{opacity:.65;}
-  36%{opacity:0;}
-  100%{opacity:0;}
-}
-
-/* Product Image */
-.prod-img{
-  width:260px;
-  height:260px;
-  object-fit:cover;
-  border-radius:18px;
-  box-shadow:0 12px 25px rgba(0,0,0,.28);
-  flex-shrink:0;
-}
-
-/* Slider */
-.auto-slider{
-  overflow:hidden;
-  position:relative;
-}
-
-.auto-track{
-  display:flex;
-  gap:16px;
-  width:max-content;
-  animation:scrollX 90s linear infinite;
-  will-change:transform;
-}
-
-.auto-slider:hover .auto-track{
-  animation-play-state:paused;
-}
-
-@keyframes scrollX{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-
-/* Big Landscape Slider */
-.single-slider{
-  overflow:hidden;
-  max-width:1200px;
-  margin:auto;
-  border-radius:24px;
-}
-
-.single-track{
-  display:flex;
-  width:max-content;
-  animation:slideBig 80s infinite linear;
-}
-
-.land-img{
-  width:1200px;
-  height:650px;
-  object-fit:contain;
-  background:rgba(255,255,255,.05);
-  flex-shrink:0;
-}
-
-@keyframes slideBig{
-  0%,10%{transform:translateX(0)}
-  12%,22%{transform:translateX(-1200px)}
-  24%,34%{transform:translateX(-2400px)}
-  36%,46%{transform:translateX(-3600px)}
-  48%,58%{transform:translateX(-4800px)}
-  60%,70%{transform:translateX(-6000px)}
-  72%,82%{transform:translateX(-7200px)}
-  84%,94%{transform:translateX(-8400px)}
-  100%{transform:translateX(0)}
-}
-
-/* Mobile */
-@media(max-width:768px){
-
-.prod-img{
-  width:180px;
-  height:180px;
-}
-
-.land-img{
-  width:100vw;
-  height:300px;
-}
-
-}
-
- .prod-img:hover{
-transform:scale(1.07) rotate(1deg);
-box-shadow:0 20px 45px rgba(255,255,255,.18);
-transition:.4s ease;
-}
-
-::-webkit-scrollbar{
-width:8px;
-}
-
-::-webkit-scrollbar-thumb{
-background:#9333ea;
-border-radius:20px;
-}
-
- 
-</style>
 </head>
-<body class="text-white font-sans relative bg-black selection:bg-pink-500 selection:text-white">
 
+<body>
 
- <!-- Auto Sliding Background Images -->
-<div class="fixed inset-0 -z-10 overflow-hidden">
-
-  <!-- Slide 1 -->
-  <img src="bg1.png"
-       class="bg-slide absolute inset-0 w-full h-full object-cover">
-
-  <!-- Slide 2 -->
-  <img src="bg2.png"
-       class="bg-slide absolute inset-0 w-full h-full object-cover">
-
-  <!-- Slide 3 -->
-  <img src="bg3.png"
-       class="bg-slide absolute inset-0 w-full h-full object-cover">
-
-  <!-- Purple Overlay -->
-  <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-purple-700 to-indigo-900 opacity-70"></div>
+<!-- BACKGROUND -->
+<div class="fixed inset-0 -z-10">
+  <img src="bg1.png" class="bg-slide">
+  <img src="bg2.png" class="bg-slide">
+  <img src="bg3.png" class="bg-slide">
+  <div class="absolute inset-0 bg-black/60"></div>
 </div>
 
+<!-- HERO -->
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-4">
+  <h1 class="text-5xl md:text-7xl font-black">
+    Maa Kali Printing Hub <br> & <br> Shree Card Center
+  </h1>
 
-  <!-- Hero Section -->
-  <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
+  <p class="mt-4 text-lg text-purple-200">
+    Sublimation Printing • Wedding Cards • Gifts
+  </p>
 
-  <div class="absolute inset-0 bg-black/30"></div>
+  <div class="mt-6 flex gap-4">
+    <a href="#products" class="bg-white text-purple-800 px-6 py-3 rounded-full">Explore</a>
+    <a href="https://wa.me/919565959697" target="_blank"
+       class="bg-green-500 px-6 py-3 rounded-full">WhatsApp</a>
+  </div>
+</section>
 
-  <div class="relative z-10 max-w-5xl">
-    <h1 class="text-5xl md:text-7xl font-black leading-tight drop-shadow-2xl">
-      Maa Kali Printing Hub <br>
-      <span class="text-pink-300">&</span><br>
-      Shree Card Center
-    </h1>
+<!-- PRODUCTS -->
+<section id="products" class="py-16 px-6">
+  <h2 class="text-4xl text-center font-bold mb-10">Our Products</h2>
 
-    <p class="text-xl md:text-2xl mt-6 text-purple-100">
-      Premium Sublimation Printing • Wedding Cards • Gifts • Visiting Cards
-    </p>
+  <div class="auto-slider">
+    <div class="auto-track">
+      <img src="t1.jpg" class="prod-img">
+      <img src="t2.jpg" class="prod-img">
+      <img src="t3.jpg" class="prod-img">
+      <img src="t4.jpg" class="prod-img">
+      <img src="t5.jpg" class="prod-img">
 
-    <div class="mt-8 flex flex-wrap gap-4 justify-center">
-
-      <a href="#categories"
-      class="bg-white text-purple-800 px-8 py-4 rounded-full font-bold hover:scale-105 transition shadow-2xl">
-      Explore Products
-      </a>
-
-      <a href="https://wa.me/919565959697"
-      target="_blank"
-      class="bg-green-500 px-8 py-4 rounded-full font-bold hover:scale-105 transition shadow-2xl">
-      WhatsApp Now
-      </a>
-
+      <!-- duplicate for smooth loop -->
+      <img src="t1.jpg" class="prod-img">
+      <img src="t2.jpg" class="prod-img">
+      <img src="t3.jpg" class="prod-img">
+      <img src="t4.jpg" class="prod-img">
+      <img src="t5.jpg" class="prod-img">
     </div>
   </div>
-
 </section>
 
-    
-  <!-- Fixed Corner Logos -->
+<!-- REVIEWS -->
+<section class="py-16 px-6">
+  <h2 class="text-3xl text-center mb-8">Customer Reviews</h2>
 
-<!-- Left Corner Logo -->
-<div class="fixed top-4 left-4 z-50">
-  <img src="logo1.jpeg"
-       alt="Maa Kali Printing Hub Logo"
-       class="w-28 h-20 md:w-40 md:h-24 object-contain rounded-2xl bg-white p-2 shadow-2xl border border-white/30">
-</div>
+  <form id="form" class="max-w-xl mx-auto space-y-4">
+    <input id="name" placeholder="Name" required class="w-full p-3 text-black rounded">
+    <textarea id="msg" placeholder="Message" required class="w-full p-3 text-black rounded"></textarea>
 
-<!-- Right Corner Logo -->
-<div class="fixed top-4 right-4 z-50">
-  <img src="logo2.jpeg"
-       alt="Shree Card Center Logo"
-       class="w-28 h-20 md:w-40 md:h-24 object-contain rounded-2xl bg-white p-2 shadow-2xl border border-white/30">
-</div>
-    
-  </section>
+    <input type="file" id="photo" accept="image/*">
 
-  <!-- Maa Kali Categories -->
-  <section id="categories" class="py-16 px-6 md:px-20">
-   <h2 class="text-5xl font-black text-center mb-14">
-🔥 Our Trending Products
-</h2>
+    <button class="w-full bg-pink-500 py-3 rounded">Submit</button>
+  </form>
 
-    <!-- Category Carousel Card -->
-    <style>
-      .auto-slider{overflow:hidden;position:relative}
-      .auto-track{display:grid;grid-template-columns:repeat(10, minmax(0,1fr));gap:1rem;animation:scrollX 20s linear infinite;width:max-content}
-      .auto-track.two-line{grid-template-rows:repeat(2,1fr);grid-auto-flow:column}
-      .auto-slider:hover .auto-track{animation-play-state:paused}
-      @keyframes scrollX{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-      .prod-img{width:16rem;height:16rem;object-fit:cover;border-radius:1rem;box-shadow:0 10px 25px rgba(0,0,0,.35)}
-    </style>
-    <div class="space-y-16">
-
-      <!-- T-Shirts Carousel -->
-      <div>
-        <h3 class="text-2xl font-semibold mb-4">T-Shirts</h3>
-        <div class="auto-slider">
-          <div class="auto-track two-line">
-            <img src="t1.jpg" class="prod-img" onerror="this.onerror=null;this.src='t1.jpeg';this.onerror=function(){this.src='t1.png'}">
-            <img src="t2.jpg" class="prod-img" onerror="this.onerror=null;this.src='t2.jpeg';this.onerror=function(){this.src='t2.png'}">
-            <img src="t3.jpg" class="prod-img" onerror="this.onerror=null;this.src='t3.jpeg';this.onerror=function(){this.src='t3.png'}">
-            <img src="t4.jpg" class="prod-img" onerror="this.onerror=null;this.src='t4.jpeg';this.onerror=function(){this.src='t4.png'}">
-            <img src="t5.jpg" class="prod-img" onerror="this.onerror=null;this.src='t5.jpeg';this.onerror=function(){this.src='t5.png'}">
-            <img src="t6.jpg" class="prod-img" onerror="this.onerror=null;this.src='t6.jpeg';this.onerror=function(){this.src='t6.png'}">
-            <img src="t7.jpg" class="prod-img" onerror="this.onerror=null;this.src='t7.jpeg';this.onerror=function(){this.src='t7.png'}">
-            <img src="t8.jpg" class="prod-img" onerror="this.onerror=null;this.src='t8.jpeg';this.onerror=function(){this.src='t8.png'}">
-            <img src="t9.jpg" class="prod-img" onerror="this.onerror=null;this.src='t9.jpeg';this.onerror=function(){this.src='t9.png'}">
-            <img src="t10.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t10.png'}">
-            <img src="t11.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t11.png'}">
-            <img src="t12.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t12.png'}">
-            <img src="t13.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t13.png'}">
-            <img src="t14.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t14.png'}">
-            <img src="t15.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t15.png'}">
-            <img src="t16.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t16.png'}">
-            <img src="t17.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t17.png'}">
-            <img src="t18.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t18.png'}">
-            <img src="t19.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t19.png'}">
-            <img src="t20.jpg" class="prod-img" onerror="this.onerror=null;this.src='t10.jpeg';this.onerror=function(){this.src='t20.png'}">
-            <img src="t21.jpg" class="prod-img" onerror="this.onerror=null;this.src='t21.jpeg';this.onerror=function(){this.src='t21.png'}">
-            <img src="t22.jpg" class="prod-img" onerror="this.onerror=null;this.src='t22.jpeg';this.onerror=function(){this.src='t22.png'}">
-            <img src="t23.jpg" class="prod-img" onerror="this.onerror=null;this.src='t23.jpeg';this.onerror=function(){this.src='t23.png'}">
-            <img src="t24.jpg" class="prod-img" onerror="this.onerror=null;this.src='t24.jpeg';this.onerror=function(){this.src='t24.png'}">
-            <img src="t25.jpg" class="prod-img" onerror="this.onerror=null;this.src='t25.jpeg';this.onerror=function(){this.src='t25.png'}">
-            <img src="t26.jpg" class="prod-img" onerror="this.onerror=null;this.src='t26.jpeg';this.onerror=function(){this.src='t26.png'}">
-            <img src="t27.jpg" class="prod-img" onerror="this.onerror=null;this.src='t27.jpeg';this.onerror=function(){this.src='t27.png'}">
-            <img src="t28.jpg" class="prod-img" onerror="this.onerror=null;this.src='t28.jpeg';this.onerror=function(){this.src='t28.png'}">
-            <img src="t29.jpg" class="prod-img" onerror="this.onerror=null;this.src='t29.jpeg';this.onerror=function(){this.src='t29.png'}">
-            <img src="t30.jpg" class="prod-img" onerror="this.onerror=null;this.src='t30.jpeg';this.onerror=function(){this.src='t30.png'}">
-            <img src="t31.jpg" class="prod-img" onerror="this.onerror=null;this.src='t31.jpeg';this.onerror=function(){this.src='t31.png'}">
-            <img src="t32.jpg" class="prod-img" onerror="this.onerror=null;this.src='t32.jpeg';this.onerror=function(){this.src='t32.png'}">
-            <img src="t33.jpg" class="prod-img" onerror="this.onerror=null;this.src='t33.jpeg';this.onerror=function(){this.src='t33.png'}">
-            <img src="t34.jpg" class="prod-img" onerror="this.onerror=null;this.src='t34.jpeg';this.onerror=function(){this.src='t34.png'}">
-            <img src="t35.jpg" class="prod-img" onerror="this.onerror=null;this.src='t35.jpeg';this.onerror=function(){this.src='t35.png'}">
-            <img src="t36.jpg" class="prod-img" onerror="this.onerror=null;this.src='t36.jpeg';this.onerror=function(){this.src='t36.png'}">
-            <img src="t37.jpg" class="prod-img" onerror="this.onerror=null;this.src='t37.jpeg';this.onerror=function(){this.src='t37.png'}">
-            <img src="t38.jpg" class="prod-img" onerror="this.onerror=null;this.src='t38.jpeg';this.onerror=function(){this.src='t38.png'}">
-            <img src="t39.jpg" class="prod-img" onerror="this.onerror=null;this.src='t39.jpeg';this.onerror=function(){this.src='t39.png'}">
-            <img src="t40.jpg" class="prod-img" onerror="this.onerror=null;this.src='t40.jpeg';this.onerror=function(){this.src='t40.png'}">
-            <img src="t41.jpg" class="prod-img" onerror="this.onerror=null;this.src='t41.jpeg';this.onerror=function(){this.src='t41.png'}">
-          </div>
-        </div>
-      </div>
-
-      <!-- Cushion Carousel -->
-      <div>
-        <h3 class="text-2xl font-semibold mb-4">Cushion Covers</h3>
-        <div class="auto-slider">
-          <div class="auto-track two-line">
-            <img src="c1.jpg" class="prod-img" onerror="this.onerror=null;this.src='c1.jpeg';this.onerror=function(){this.src='c1.png'}">
-            <img src="c2.jpg" class="prod-img" onerror="this.onerror=null;this.src='c2.jpeg';this.onerror=function(){this.src='c2.png'}">
-            <img src="c3.jpg" class="prod-img" onerror="this.onerror=null;this.src='c3.jpeg';this.onerror=function(){this.src='c3.png'}">
-            <img src="c4.jpg" class="prod-img" onerror="this.onerror=null;this.src='c4.jpeg';this.onerror=function(){this.src='c4.png'}">
-            <img src="c5.jpg" class="prod-img" onerror="this.onerror=null;this.src='c5.jpeg';this.onerror=function(){this.src='c5.png'}">
-            <img src="c6.jpg" class="prod-img" onerror="this.onerror=null;this.src='c6.jpeg';this.onerror=function(){this.src='c6.png'}">
-            <img src="c7.jpg" class="prod-img" onerror="this.onerror=null;this.src='c7.jpeg';this.onerror=function(){this.src='c7.png'}">
-            <img src="c8.jpg" class="prod-img" onerror="this.onerror=null;this.src='c8.jpeg';this.onerror=function(){this.src='c8.png'}">
-            <img src="c9.jpg" class="prod-img" onerror="this.onerror=null;this.src='c9.jpeg';this.onerror=function(){this.src='c9.png'}">
-            <img src="c10.jpg" class="prod-img" onerror="this.onerror=null;this.src='c10.jpeg';this.onerror=function(){this.src='c10.png'}">
-            <img src="c11.jpg" class="prod-img" onerror="this.onerror=null;this.src='c11.jpeg';this.onerror=function(){this.src='c11.png'}">
-            <img src="c12.jpg" class="prod-img" onerror="this.onerror=null;this.src='c12.jpeg';this.onerror=function(){this.src='c12.png'}">
-            <img src="c13.jpg" class="prod-img" onerror="this.onerror=null;this.src='c13.jpeg';this.onerror=function(){this.src='c13.png'}">
-            <img src="c14.jpg" class="prod-img" onerror="this.onerror=null;this.src='c14.jpeg';this.onerror=function(){this.src='c14.png'}">
-            <img src="c15.jpg" class="prod-img" onerror="this.onerror=null;this.src='c15.jpeg';this.onerror=function(){this.src='c15.png'}">
-            <img src="c16.jpg" class="prod-img" onerror="this.onerror=null;this.src='c16.jpeg';this.onerror=function(){this.src='c16.png'}">
-            <img src="c17.jpg" class="prod-img" onerror="this.onerror=null;this.src='c17.jpeg';this.onerror=function(){this.src='c17.png'}">
-            <!-- <img src="c18.jpg" class="prod-img" onerror="this.onerror=null;this.src='c18.jpeg';this.onerror=function(){this.src='c18.png'}">
-            <img src="c19.jpg" class="prod-img" onerror="this.onerror=null;this.src='c19.jpeg';this.onerror=function(){this.src='c19.png'}">
-            <img src="c20.jpg" class="prod-img" onerror="this.onerror=null;this.src='c20.jpeg';this.onerror=function(){this.src='c20.png'}"> -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Mugs Carousel -->
-      <div>
-        <h3 class="text-2xl font-semibold mb-4">Mugs & Bottles</h3>
-        <div class="auto-slider">
-          <div class="auto-track two-line">
-            <img src="m1.jpg" class="prod-img" onerror="this.onerror=null;this.src='m1.jpeg';this.onerror=function(){this.src='m1.png'}">
-            <img src="m2.jpg" class="prod-img" onerror="this.onerror=null;this.src='m2.jpeg';this.onerror=function(){this.src='m2.png'}">
-            <!-- <img src="m3.jpg" class="prod-img" onerror="this.onerror=null;this.src='m3.jpeg';this.onerror=function(){this.src='m3.png'}"> -->
-            <img src="m4.jpg" class="prod-img" onerror="this.onerror=null;this.src='m4.jpeg';this.onerror=function(){this.src='m4.png'}">
-            <img src="m5.jpg" class="prod-img" onerror="this.onerror=null;this.src='m5.jpeg';this.onerror=function(){this.src='m5.png'}">
-            <img src="m6.jpg" class="prod-img" onerror="this.onerror=null;this.src='m6.jpeg';this.onerror=function(){this.src='m6.png'}">
-            <img src="m7.jpg" class="prod-img" onerror="this.onerror=null;this.src='m7.jpeg';this.onerror=function(){this.src='m7.png'}">
-            <img src="m8.jpg" class="prod-img" onerror="this.onerror=null;this.src='m8.jpeg';this.onerror=function(){this.src='m8.png'}">
-            <img src="m9.jpg" class="prod-img" onerror="this.onerror=null;this.src='m9.jpeg';this.onerror=function(){this.src='m9.png'}">
-            <img src="m10.jpg" class="prod-img" onerror="this.onerror=null;this.src='m10.jpeg';this.onerror=function(){this.src='m10.png'}">
-            <img src="m11.jpg" class="prod-img" onerror="this.onerror=null;this.src='m11.jpeg';this.onerror=function(){this.src='m11.png'}">
-            <img src="m12.jpg" class="prod-img" onerror="this.onerror=null;this.src='m12.jpeg';this.onerror=function(){this.src='m12.png'}">
-            <!-- <img src="m13.jpg" class="prod-img" onerror="this.onerror=null;this.src='m13.jpeg';this.onerror=function(){this.src='m13.png'}"> -->
-            <img src="m14.jpg" class="prod-img" onerror="this.onerror=null;this.src='m14.jpeg';this.onerror=function(){this.src='m14.png'}">
-            <img src="m15.jpg" class="prod-img" onerror="this.onerror=null;this.src='m15.jpeg';this.onerror=function(){this.src='m15.png'}">
-            <img src="m16.jpg" class="prod-img" onerror="this.onerror=null;this.src='m16.jpeg';this.onerror=function(){this.src='m16.png'}">
-            <img src="m17.jpg" class="prod-img" onerror="this.onerror=null;this.src='m17.jpeg';this.onerror=function(){this.src='m17.png'}">
-            <img src="m18.jpg" class="prod-img" onerror="this.onerror=null;this.src='m18.jpeg';this.onerror=function(){this.src='m18.png'}">
-            <img src="m19.jpg" class="prod-img" onerror="this.onerror=null;this.src='m19.jpeg';this.onerror=function(){this.src='m19.png'}">
-            <img src="m20.jpg" class="prod-img" onerror="this.onerror=null;this.src='m20.jpeg';this.onerror=function(){this.src='m20.png'}">
-            <img src="m21.jpg" class="prod-img" onerror="this.onerror=null;this.src='m21.jpeg';this.onerror=function(){this.src='m21.png'}">
-            <img src="m22.jpg" class="prod-img" onerror="this.onerror=null;this.src='m22.jpeg';this.onerror=function(){this.src='m22.png'}">
-            <img src="m23.jpg" class="prod-img" onerror="this.onerror=null;this.src='m23.jpeg';this.onerror=function(){this.src='m23.png'}">
-            <img src="m24.jpg" class="prod-img" onerror="this.onerror=null;this.src='m24.jpeg';this.onerror=function(){this.src='m24.png'}">
-            <img src="m25.jpg" class="prod-img" onerror="this.onerror=null;this.src='m25.jpeg';this.onerror=function(){this.src='m25.png'}">
-            <img src="m26.jpg" class="prod-img" onerror="this.onerror=null;this.src='m26.jpeg';this.onerror=function(){this.src='m26.png'}">
-            <img src="m27.jpg" class="prod-img" onerror="this.onerror=null;this.src='m27.jpeg';this.onerror=function(){this.src='m27.png'}">
-            <img src="m28.jpg" class="prod-img" onerror="this.onerror=null;this.src='m28.jpeg';this.onerror=function(){this.src='m28.png'}">
-            <img src="m29.jpg" class="prod-img" onerror="this.onerror=null;this.src='m29.jpeg';this.onerror=function(){this.src='m29.png'}">
-            <img src="m30.jpg" class="prod-img" onerror="this.onerror=null;this.src='m30.jpeg';this.onerror=function(){this.src='m30.png'}">
-            <img src="m31.jpg" class="prod-img" onerror="this.onerror=null;this.src='m31.jpeg';this.onerror=function(){this.src='m31.png'}">
-            <img src="m32.jpg" class="prod-img" onerror="this.onerror=null;this.src='m32.jpeg';this.onerror=function(){this.src='m32.png'}">
-            <img src="m33.jpg" class="prod-img" onerror="this.onerror=null;this.src='m33.jpeg';this.onerror=function(){this.src='m33.png'}">
-            <img src="m34.jpg" class="prod-img" onerror="this.onerror=null;this.src='m34.jpeg';this.onerror=function(){this.src='m34.png'}">
-            <img src="m35.jpg" class="prod-img" onerror="this.onerror=null;this.src='m35.jpeg';this.onerror=function(){this.src='m35.png'}">
-            <img src="m36.jpg" class="prod-img" onerror="this.onerror=null;this.src='m36.jpeg';this.onerror=function(){this.src='m36.png'}">
-            <img src="m37.jpg" class="prod-img" onerror="this.onerror=null;this.src='m37.jpeg';this.onerror=function(){this.src='m37.png'}">
-            <img src="m38.jpg" class="prod-img" onerror="this.onerror=null;this.src='m38.jpeg';this.onerror=function(){this.src='m38.png'}">
-            <img src="m39.jpg" class="prod-img" onerror="this.onerror=null;this.src='m39.jpeg';this.onerror=function(){this.src='m39.png'}">
-            <img src="m40.jpg" class="prod-img" onerror="this.onerror=null;this.src='m40.jpeg';this.onerror=function(){this.src='m40.png'}">
-            <img src="m41.jpg" class="prod-img" onerror="this.onerror=null;this.src='m41.jpeg';this.onerror=function(){this.src='m41.png'}">
-            <img src="m42.jpg" class="prod-img" onerror="this.onerror=null;this.src='m42.jpeg';this.onerror=function(){this.src='m42.png'}">
-            <img src="m43.jpg" class="prod-img" onerror="this.onerror=null;this.src='m43.jpeg';this.onerror=function(){this.src='m43.png'}">
-            <img src="m44.jpg" class="prod-img" onerror="this.onerror=null;this.src='m44.jpeg';this.onerror=function(){this.src='m44.png'}">
-            <img src="m45.jpg" class="prod-img" onerror="this.onerror=null;this.src='m45.jpeg';this.onerror=function(){this.src='m45.png'}">
-            <img src="m46.jpg" class="prod-img" onerror="this.onerror=null;this.src='m46.jpeg';this.onerror=function(){this.src='m46.png'}">
-            <img src="m47.jpg" class="prod-img" onerror="this.onerror=null;this.src='m47.jpeg';this.onerror=function(){this.src='m47.png'}">
-            <img src="m48.jpg" class="prod-img" onerror="this.onerror=null;this.src='m48.jpeg';this.onerror=function(){this.src='m48.png'}">
-            <img src="m49.jpg" class="prod-img" onerror="this.onerror=null;this.src='m49.jpeg';this.onerror=function(){this.src='m49.png'}">
-            <img src="m50.jpg" class="prod-img" onerror="this.onerror=null;this.src='m50.jpeg';this.onerror=function(){this.src='m50.png'}">
-            <img src="m51.jpg" class="prod-img" onerror="this.onerror=null;this.src='m51.jpeg';this.onerror=function(){this.src='m51.png'}">
-          </div>
-        </div>
-      </div>
-
-     <!-- Digital Print Media Carousel -->
-<div>
-  <h3 class="text-2xl font-semibold mb-6">Digital Print Media & Cards</h3>
-
- <style>
-  .single-slider{
-    overflow:hidden;
-    width:100%;
-    max-width:1200px;
-    margin:auto;
-    border-radius:28px;
-    box-shadow:0 25px 55px rgba(0,0,0,.40);
-  }
-
-  .single-track{
-    display:flex;
-    width:max-content;
-    animation:slideOne 60s infinite linear;
-  }
-
-  .single-slider:hover .single-track{
-    animation-play-state:paused;
-  }
-
-  .land-img{
-    width:1200px;
-    height:650px;
-    object-fit:contain;
-    background:rgba(255,255,255,0.08);
-    flex-shrink:0;
-    border-radius:28px;
-    padding:8px;
-  }
-
-  @keyframes slideOne{
-    0%,8%{transform:translateX(0)}
-    10%,18%{transform:translateX(-1200px)}
-    20%,28%{transform:translateX(-2400px)}
-    30%,38%{transform:translateX(-3600px)}
-    40%,48%{transform:translateX(-4800px)}
-    50%,58%{transform:translateX(-6000px)}
-    60%,68%{transform:translateX(-7200px)}
-    70%,78%{transform:translateX(-8400px)}
-    80%,88%{transform:translateX(-9600px)}
-    90%,98%{transform:translateX(-10800px)}
-    100%{transform:translateX(0)}
-  }
-
-  @media(max-width:768px){
-    .single-slider{
-      max-width:100%;
-      border-radius:18px;
-    }
-
-    .land-img{
-      width:100vw;
-      height:340px;
-      object-fit:contain;
-      border-radius:18px;
-    }
-  }
-</style>
-
-  <div class="single-slider">
-    <div class="single-track">
-
-      <img src="p1.jpg" class="land-img" onerror="this.src='p1.jpeg';this.onerror=function(){this.src='p1.png'}">
-      <img src="p2.jpg" class="land-img" onerror="this.src='p2.jpeg';this.onerror=function(){this.src='p2.png'}">
-      <img src="p3.jpg" class="land-img" onerror="this.src='p3.jpeg';this.onerror=function(){this.src='p3.png'}">
-      <img src="p4.jpg" class="land-img" onerror="this.src='p4.jpeg';this.onerror=function(){this.src='p4.png'}">
-      <img src="p5.jpg" class="land-img" onerror="this.src='p5.jpeg';this.onerror=function(){this.src='p5.png'}">
-      <img src="p6.jpg" class="land-img" onerror="this.src='p6.jpeg';this.onerror=function(){this.src='p6.png'}">
-      <img src="p7.jpg" class="land-img" onerror="this.src='p7.jpeg';this.onerror=function(){this.src='p7.png'}">
-      <img src="p8.jpg" class="land-img" onerror="this.src='p8.jpeg';this.onerror=function(){this.src='p8.png'}">
-      <img src="p9.jpg" class="land-img" onerror="this.src='p9.jpeg';this.onerror=function(){this.src='p9.png'}">
-      <img src="p10.jpg" class="land-img" onerror="this.src='p10.jpeg';this.onerror=function(){this.src='p10.png'}">
-
-    </div>
-  </div>
-</div>
-
-      <!-- Gift Items Carousel -->
-      <div>
-        <h3 class="text-2xl font-semibold mb-4">Gifts Items</h3>
-        <div class="auto-slider">
-          <div class="auto-track two-line">
-            <img src="g1.jpg" class="prod-img" onerror="this.onerror=null;this.src='g1.jpeg';this.onerror=function(){this.src='g1.png'}">
-            <img src="g2.jpg" class="prod-img" onerror="this.onerror=null;this.src='g2.jpeg';this.onerror=function(){this.src='g2.png'}">
-            <img src="g3.jpg" class="prod-img" onerror="this.onerror=null;this.src='g3.jpeg';this.onerror=function(){this.src='g3.png'}">
-            <img src="g4.jpg" class="prod-img" onerror="this.onerror=null;this.src='g4.jpeg';this.onerror=function(){this.src='g4.png'}">
-            <img src="g5.jpg" class="prod-img" onerror="this.onerror=null;this.src='g5.jpeg';this.onerror=function(){this.src='g5.png'}">
-            <img src="g6.jpg" class="prod-img" onerror="this.onerror=null;this.src='g6.jpeg';this.onerror=function(){this.src='g6.png'}">
-            <img src="g7.jpg" class="prod-img" onerror="this.onerror=null;this.src='g7.jpeg';this.onerror=function(){this.src='g7.png'}">
-            <img src="g8.jpg" class="prod-img" onerror="this.onerror=null;this.src='g8.jpeg';this.onerror=function(){this.src='g8.png'}">
-            <img src="g9.jpg" class="prod-img" onerror="this.onerror=null;this.src='g9.jpeg';this.onerror=function(){this.src='g9.png'}">
-            <img src="g10.jpg" class="prod-img" onerror="this.onerror=null;this.src='g10.jpeg';this.onerror=function(){this.src='g10.png'}">
-            <img src="g11.jpg" class="prod-img" onerror="this.onerror=null;this.src='g11.jpeg';this.onerror=function(){this.src='g11.png'}">
-            <img src="g12.jpg" class="prod-img" onerror="this.onerror=null;this.src='g12.jpeg';this.onerror=function(){this.src='g12.png'}">
-            <img src="g13.jpg" class="prod-img" onerror="this.onerror=null;this.src='g13.jpeg';this.onerror=function(){this.src='g13.png'}">
-            <img src="g14.jpg" class="prod-img" onerror="this.onerror=null;this.src='g14.jpeg';this.onerror=function(){this.src='g14.png'}">
-            <img src="g15.jpg" class="prod-img" onerror="this.onerror=null;this.src='g15.jpeg';this.onerror=function(){this.src='g15.png'}">
-            <img src="g16.jpg" class="prod-img" onerror="this.onerror=null;this.src='g16.jpeg';this.onerror=function(){this.src='g16.png'}">
-            <img src="g17.jpg" class="prod-img" onerror="this.onerror=null;this.src='g17.jpeg';this.onerror=function(){this.src='g17.png'}">
-            <img src="g18.jpg" class="prod-img" onerror="this.onerror=null;this.src='g18.jpeg';this.onerror=function(){this.src='g18.png'}">
-            <img src="g19.jpg" class="prod-img" onerror="this.onerror=null;this.src='g19.jpeg';this.onerror=function(){this.src='g19.png'}">
-            <img src="g20.jpg" class="prod-img" onerror="this.onerror=null;this.src='g20.jpeg';this.onerror=function(){this.src='g20.png'}">
-            <img src="g21.jpg" class="prod-img" onerror="this.onerror=null;this.src='g21.jpeg';this.onerror=function(){this.src='g21.png'}">
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </section>
-
-  <!-- Shree Card Center Section -->
-  <section class="py-16 px-6 md:px-20 bg-white/10 backdrop-blur-xl text-center">
-    <h2 class="text-4xl font-bold mb-8">Shree Card Center</h2>
-    <p class="max-w-3xl mx-auto text-lg mb-10">We specialize in designing and printing all types of cards for every occasion with premium quality and elegant designs.</p>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-      <div class="bg-gradient-to-r from-pink-500/30 to-purple-700/30 p-6 rounded-xl hover:scale-105 transition">
-        <h3 class="text-xl font-semibold">Visiting Cards</h3>
-      </div>
-
-      <div class="bg-gradient-to-r from-pink-500/30 to-purple-700/30 p-6 rounded-xl hover:scale-105 transition">
-        <h3 class="text-xl font-semibold">Wedding Cards</h3>
-      </div>
-
-      <div class="bg-gradient-to-r from-pink-500/30 to-purple-700/30 p-6 rounded-xl hover:scale-105 transition">
-        <h3 class="text-xl font-semibold">Birthday Cards</h3>
-      </div>
-
-      <div class="bg-gradient-to-r from-pink-500/30 to-purple-700/30 p-6 rounded-xl hover:scale-105 transition">
-        <h3 class="text-xl font-semibold">Mundan Cards</h3>
-      </div>
-
-      <div class="bg-gradient-to-r from-pink-500/30 to-purple-700/30 p-6 rounded-xl hover:scale-105 transition">
-        <h3 class="text-xl font-semibold">Janeu Cards</h3>
-      </div>
-
-       <div class="bg-gradient-to-r from-pink-500/30 to-purple-700/30 p-6 rounded-xl hover:scale-105 transition">
-        <h3 class="text-xl font-semibold">& Many More Cards related Works</h3>
-      </div>
-
-    </div>
-  </section>
-
-<!-- PREMIUM CUSTOMER REVIEW SECTION WITH PHOTO UPLOAD -->
-<section class="py-20 px-6 md:px-20 bg-white/10 backdrop-blur-xl rounded-3xl my-16 mx-4">
-
-<h2 class="text-5xl font-black text-center mb-4 text-white">
-⭐ Customer Reviews
-</h2>
-
-<p class="text-center text-purple-100 mb-12 text-lg">
-Customers review ke saath photo bhi upload kar sakte hain
-</p>
-
-<div class="grid md:grid-cols-2 gap-10">
-
-<!-- LEFT SIDE FORM -->
-<div class="bg-black/30 p-8 rounded-3xl shadow-2xl">
-
-<h3 class="text-2xl font-bold mb-6">Write Your Review</h3>
-
-<form id="reviewForm" class="space-y-5">
-
-<input type="text" id="name" placeholder="Your Name"
-class="w-full p-4 rounded-xl text-black outline-none" required>
-
-<textarea id="message" placeholder="Write your experience..."
-rows="5"
-class="w-full p-4 rounded-xl text-black outline-none" required></textarea>
-
-<select id="rating"
-class="w-full p-4 rounded-xl text-black outline-none" required>
-<option value="">Select Rating</option>
-<option value="⭐⭐⭐⭐⭐">5 Star</option>
-<option value="⭐⭐⭐⭐">4 Star</option>
-<option value="⭐⭐⭐">3 Star</option>
-<option value="⭐⭐">2 Star</option>
-<option value="⭐">1 Star</option>
-</select>
-
-<!-- Photo Upload -->
-<input type="file" id="photo"
-accept="image/*"
-class="w-full p-3 rounded-xl bg-white text-black">
-
-<button type="submit"
-class="w-full bg-pink-500 hover:bg-pink-600 transition py-4 rounded-xl font-bold text-lg">
-Submit Review
-</button>
-
-</form>
-</div>
-
-
-<!-- RIGHT SIDE REVIEWS -->
-<div>
-
-<h3 class="text-2xl font-bold mb-6">Recent Reviews</h3>
-
-<div id="reviewsContainer"
-class="space-y-5 max-h-[600px] overflow-y-auto pr-2 custom-scroll">
-
-
-<!-- Example Review -->
-<div class="bg-white/10 p-5 rounded-2xl">
-<h4 class="font-bold text-xl">Awesome</h4>
-
-<img src="your-image.jpg"
-class="review-img"
-onclick="openImage(this.src)">
-</div>
-</div>
-
-</div>
-
-</div>
+  <div id="reviews" class="mt-10 space-y-4"></div>
 </section>
 
-
-<style>
-.custom-scroll::-webkit-scrollbar{
-width:8px;
-}
-.custom-scroll::-webkit-scrollbar-thumb{
-background:#ec4899;
-border-radius:20px;
-}
-</style>
-
-
-<script>
-
-const form = document.getElementById("reviewForm");
-
-form.addEventListener("submit", async function(e){
-e.preventDefault();
-
-const name = document.getElementById("name").value;
-const msg = document.getElementById("message").value;
-const rating = document.getElementById("rating").value;
-const file = document.getElementById("photo").files[0];
-
-let base64 = "";
-
-if(file){
-  const reader = new FileReader();
-  
-  reader.onloadend = async function(){
-    base64 = reader.result;
-
-    await sendData(name, msg, rating, base64);
-  }
-
-  reader.readAsDataURL(file);
-
-}else{
-  await sendData(name, msg, rating, "");
-}
-
-});
-
-async function sendData(name, msg, rating, image){
-
-await fetch("https://script.google.com/macros/s/AKfycbyD6tALVByrT5ePLUaEcDylwtB_IiIL-yW0cwpmPDqzXzaAUeO4MIW91J5wEny_mXkj/exec", {
-  method: "POST",
-  body: new URLSearchParams({
-    name: name,
-    message: msg,
-    rating: rating,
-    image: image
-  })
-});
-
- alert("Review Submitted Successfully ✅");
-
-  location.reload();   // ✅ YAHI PAR RAHEGA
-}
-
-</script>
-
- 
-<!-- Contact -->
-<section class="py-16 text-center">
-  <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
-  <p class="mb-4">Order your custom designs today</p>
-
-  <a href="https://wa.me/919565959697" target="_blank"
-     class="bg-white text-purple-800 px-6 py-3 rounded-full font-semibold hover:bg-purple-200 transition inline-block">
-     Get in Touch for Sublimation Prints
-  </a>
-   <a href="https://wa.me/918181817475" target="_blank"
-     class="bg-white text-purple-800 px-6 py-3 rounded-full font-semibold hover:bg-purple-200 transition inline-block">
-     Get in Touch for Cards (Wedding, Invitation etc.)
-  </a>
-</section>
-
-  
-  <!-- Footer -->
-  <footer class="py-6 text-center bg-black/30">
-    <p>&copy; 2026 Maa Kali Printing Hub | Shree Card Center</p>
-  </footer>
- 
-<!-- IMAGE POPUP -->
+<!-- POPUP -->
 <div id="imgPopup">
-
-  <!-- Close Button -->
   <span id="closeBtn" onclick="closePopup()">✖</span>
-
-  <!-- Image -->
   <img id="popupImg">
-
 </div>
 
-
-
- 
-
 <script>
 
-async function loadReviews(){
+const form = document.getElementById("form");
 
-const res = await fetch("https://opensheet.elk.sh/1-_PUbt4-Ayax0NWXtj8Y2GRROTNGnjPBn03AGEGyNhs/Sheet1");
-const data = await res.json();
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
 
-const container = document.getElementById("reviewsContainer");
+  const name = document.getElementById("name").value;
+  const msg = document.getElementById("msg").value;
+  const file = document.getElementById("photo").files[0];
 
-data.forEach(r => {
+  let base64 = "";
 
-const div = document.createElement("div");
-div.className = "bg-white/10 p-5 rounded-2xl";
+  if(file){
+    if(file.size > 2*1024*1024){
+      alert("Max 2MB image");
+      return;
+    }
 
-div.innerHTML = `
-<h4 class="font-bold text-xl">${r.Name}</h4>
-<p class="text-yellow-300">${r.Rating}</p>
-<p class="mt-2">${r.Message}</p>
-${r.ImageURL ? `<img src="${r.ImageURL}" class="review-img" onclick="openPopup(this.src)">` : ""}
-`;
-
-container.appendChild(div);
-
+    const reader = new FileReader();
+    reader.onloadend = async ()=>{
+      base64 = reader.result;
+      send(name,msg,base64);
+    };
+    reader.readAsDataURL(file);
+  }else{
+    send(name,msg,"");
+  }
 });
 
+async function send(name,msg,image){
+  await fetch("YOUR_GOOGLE_SCRIPT_URL",{
+    method:"POST",
+    body:new URLSearchParams({name,msg,image})
+  });
+
+  alert("Review Submitted");
+  location.reload();
 }
 
-loadReviews();
-
-</script>
- 
-<script>
-
+/* POPUP */
 function openPopup(src){
-  const popup = document.getElementById("imgPopup");
-  const popupImg = document.getElementById("popupImg");
-
-  popup.style.display = "flex";
-  popupImg.src = src;
-  document.body.style.overflow = "hidden";
+  document.getElementById("imgPopup").style.display="flex";
+  document.getElementById("popupImg").src=src;
 }
-
 function closePopup(){
-  const popup = document.getElementById("imgPopup");
-  const popupImg = document.getElementById("popupImg");
-
-  popup.style.display = "none";
-  popupImg.src = "";
-  document.body.style.overflow = "auto";
+  document.getElementById("imgPopup").style.display="none";
 }
-
-/* Background click se close */
-document.getElementById("imgPopup").addEventListener("click", function(e){
-  if(e.target.id === "imgPopup"){
-    closePopup();
-  }
-});
-
-/* ESC key se bhi close */
-document.addEventListener("keydown", function(e){
-  if(e.key === "Escape"){
-    closePopup();
-  }
-});
 
 </script>
- <!--Still pending works  -->
+
 </body>
 </html>
